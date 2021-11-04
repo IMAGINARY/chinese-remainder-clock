@@ -1,0 +1,36 @@
+
+body {
+  font-family: sans-serif;
+}
+
+.mainText{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+}
+
+.subImage {
+  display: inline-block;
+  width: 24%;
+}
+
+
+#Clock1 {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 70vh;
+  text-align: center;
+}
+
+.app {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  /* max-width: 70vh; */
+  text-align: center;
+}
+
+h1{
+  text-align: center;
+}

@@ -1,0 +1,73 @@
+
+.border {
+  stroke: black;
+  fill: none;
+  stroke-width: 2px;
+}
+
+.tickLines {
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+
+.tickLabels {
+  fill: black;
+  font-size: 40%;
+  font-family: Helvetica, sans-serif;
+  font-weight: 100;
+  stroke-width: 0.1;
+}
+
+.clkHeader {
+  stroke: black;
+  fill: none;
+  stroke-width: 1px;
+}
+
+.clkFooter {
+  stroke: black;
+  fill: none;
+  stroke-width: 1px;
+}
+
+.hand {
+  stroke: black;
+  stroke-width: 3px;
+}
+
+.tick0 {
+  stroke: black;
+  stroke-width: 1px;
+}
+.tick3 {
+  stroke: rgb(0,200,0);
+  stroke-width: 1.5px;
+}
+.tick4 {
+  stroke: rgb(200,0,0);
+  stroke-width: 1.5px;
+}
+.tick5 {
+  stroke: rgb(0,0,200);
+  stroke-width: 1.5px;
+}
+
+
+
+.hand3 {
+  fill: rgb(0,200,0) !important;
+  /* stroke-width: 3px; */
+}
+.hand4 {
+  fill: rgb(200,0,0);
+  /* stroke-width: 3px; */
+}
+.hand5 {
+  fill: rgb(0,0,200);
+  /* stroke-width: 3px; */
+}
+
+.cap {
+  fill: rgb(200,200,200)
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+<!-- <script src="vendor/d3.min.js"> </script> -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
+<script src="./js/clocks.js"></script>
+<script src="./js/math.js"></script>
+<script src="./js/app1.js"></script>
+<script src="./js/app2.js"></script>
+
+
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./style-clock.css">
+
+</head>
+
+<body>
+
+<div class="mainText">
+
+  <h1> How does it work? </h1>
+  <h2> Reading hours in the Chinese Remainder Clock </h2>
+
+  <p> The usual clocks have 12 hour marks. The hour hand moves one position per hour, and thus it makes a complete turn every 12 hours. We can't tell how many turns it has already done, so we can't distinguish 1 am from 1pm, or 1 am next day.
+  </p>
+
+  <p> What if we had a clock with only three hour marks? It would make a complete turn every 3 hours. If we compare our 3-hours clock with our usual 12-hours clock, at noon both would point at the "zero" position, at 1pm both would point to the "1" position, and at 3pm the usual clock would point to "3", but the 3-hours clock would point to zero again. At 4pm, the usual clock points to "4", and the 3-hours clock points to "1", and so on.
+  <p>
+
+  <p> At 8 pm, the usual clock points to "8", and the 3-hour clock points to "2", because it has made two complete turns plus one position (8 = 3 x 2 + 1). On this 3-hour clock we can't distinguish between 2pm, 5pm, 8pm and 11pm.
+  </p>
+
+  <p> What if we had a 4-hours clock? The situation would be similar, we would not be able to distinguish between 3pm, 7pm and 11pm because in all those cases the clock would mark "3".
+  </p>
+
+  <p> But, what if we had both a 3-hour clock and a 4-hour clock? Could we distinguish the same 12 hours as in the usual 12-hours clock? Yes! That is what our Chinese Remainder Clock uses to indicate the hour: a 3-hours hand (green) and a 4-hours hand (red).
+  </p>
+
+  <div id="App1" class="app"> </div>
+
+  <p> Let's take for instance 7pm. In the 3-hour clock, it would mark "1" (because 7=3x2+1), and in the 4-hours clock it would mark "3" (because 7=4x1+3).
+  </p>
+
+  <p> But crucially, it also works the other way around: If the 3-hours clock marks "1", the only possibilities are 1, 4, 7, and 10. If the 4-hours clock marks "3", the only possibilities are 3, 7, and 11. Thus, the only hour that matches both clocks is 7. You can check that it works for all the hours, not only this example.
+  </p>
+
+  <h2>Reading minutes and seconds</h2>
+
+  <p> Our usual clocks are 60-minutes clocks, they have 60 marks for the minutes, in contrast with the 12 marks for hours. Their minute hand makes a complete turn every 60 minutes. Usual clocks are also 60-seconds clocks, the seconds hand makes a complete turn every 60 seconds.
+  </p>
+
+  <p> As we did with the hours, we can split the 60-minutes clock. Clearly, only a 3-minutes clock and a 4-minutes clock would not suffice to have all the information, since we have only 12 combinations with these two clocks. Thus, this time we split the 60-minutes clock into a 3-minutes clock, a 4-minutes clock, and a 5-minutes clock.
+  </p>
+
+  <div id="App2" class="app"> </div>
+
+
+
+
+
+
+
+    <a href="index.html"> Back to main page. </a>
+  </p>
+</div>
+
+
+<script src="./js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="4"
+   height="60.365166"
+   viewBox="0 0 4 60.36517"
+   version="1.1"
+   id="svg1056"
+   sodipodi:docname="HandSecond.svg"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1058"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     units="px"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="40.530117"
+     inkscape:cx="-0.6908443"
+     inkscape:cy="1.9121583"
+     inkscape:window-width="1758"
+     inkscape:window-height="985"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1579" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="svg_5"
+       style="color:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M -0.5722656,-58.365166 V -1.914063 C -1.3920444,-1.663951 -2,-0.895001 -2,0 -2,1.093803 -1.0938,2 0,2 1.0938,2 2,1.093803 2,0 2,-0.895764 1.3931056,-1.666576 0.5722656,-1.916016 v -56.44915 z"
+       sodipodi:nodetypes="ccsssccc" />
+  </g>
+</svg>
