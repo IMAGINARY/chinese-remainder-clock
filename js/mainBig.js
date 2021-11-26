@@ -18,4 +18,4 @@ function ticker(){
   L.setPositions([hour,hour,minute,minute,minute,second,second,second]);
 }
 
- setInterval(ticker,1000);
+ ticking = setInterval(ticker,1000);

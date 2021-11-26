@@ -1,6 +1,12 @@
 
 const mod = (x, n) => (x % n + n) % n;
 
+async function loadArt(parent,url){
+	const newsvg = await d3.svg(url);
+	var svgNode = newsvg.getElementById("layer1");
+	parent.node().appendChild(svgNode);
+}
+
 
 function sectorPath(theta, r, R){
 	var s = Math.sin(theta*Math.PI/180);
@@ -45,12 +51,13 @@ function tickMarksBigClock(){
   ticks.push({ angle: 0 , length: 2, offset: 0, label: undefined, type: "tick3" })
   ticks.push({ angle: 0 , length: 2, offset: 2, label: undefined, type: "tick4" })
   ticks.push({ angle: 0 , length: 2, offset: 4, label: undefined, type: "tick5" })
+	ticks.push({ angle: 0 , length: 0, offset: 0, label: 0, type: "tick0" })
   for (i=1; i<3; i++)
-    {ticks.push({ angle: i*360/3 , length: 6, offset: 0, label: undefined, type: "tick3" })}
+    {ticks.push({ angle: i*360/3 , length: 6, offset: 0, label: i, type: "tick3" })}
   for (i=1; i<4; i++)
-    {ticks.push({ angle: i*360/4 , length: 6, offset: 0, label: undefined, type: "tick4" })}
+    {ticks.push({ angle: i*360/4 , length: 6, offset: 0, label: i, type: "tick4" })}
   for (i=1; i<5; i++)
-    {ticks.push({ angle: i*360/5 , length: 6, offset: 0, label: undefined, type: "tick5" })}
+    {ticks.push({ angle: i*360/5 , length: 6, offset: 0, label: i, type: "tick5" })}
   return ticks;
 }
 
@@ -74,10 +81,10 @@ function tickMarksN(N){
 }
 
 function handsBigClock(){
-      return [  {N:3, img:"./art/HandHour.svg", id: "Hour3", type:"hand3"} ,
+      return [  {N:3, img:"./art/HandHour-shift-1.svg", id: "Hour3", type:"hand3"} ,
                 {N:4, img:"./art/HandHour.svg", id: "Hour4", type:"hand4"} ,
-                {N:3, img:"./art/HandMinute.svg", id: "Minute3", type:"hand3"} ,
-                {N:4, img:"./art/HandMinute.svg", id: "Minute4", type:"hand4"} ,
+                {N:3, img:"./art/HandMinute-shift-2.svg", id: "Minute3", type:"hand3"} ,
+                {N:4, img:"./art/HandMinute-shift-1.svg", id: "Minute4", type:"hand4"} ,
                 {N:5, img:"./art/HandMinute.svg", id: "Minute5", type:"hand5"} ,
                 {N:3, img:"./art/HandSecond.svg", id: "Second3", type:"hand3"} ,
                 {N:4, img:"./art/HandSecond.svg", id: "Second4", type:"hand4"} ,
@@ -234,8 +241,13 @@ class MultiHandClock60 {
 
     this.svg = d3.select(parentId).append("svg")
                   // .attr("width","100%")
-                  .attr("viewBox","-70 -80 140 160");
+                  .attr("viewBox","-70 -80 140 170");
 
+// Backplate of the clock
+		var bp = this.svg.append("g");
+		loadArt(bp,"./art/backplate.svg")
+    // this.svg.append("circle").attr("class","backplate")
+    //   .attr("r",R);
 
 // Tick Marks
     var i;
@@ -251,12 +263,13 @@ class MultiHandClock60 {
         .attr("x2",0)
         .attr("y2",function(d){return -(R - d.offset) })
 
-    tickMarks.append("text").attr("class","tickLabels")
+    tickMarks.append("text")
+				.attr("class",function(d){return "tickLabelsBigClock "+ d.type})
         .text(function(d){return d.label})
         .attr("text-anchor","middle")
         .attr("alignment-baseline","middle")
         .attr("transform",function(d,i,nodes){
-            return "translate(0 " + (-R+7) +
+            return "translate(0 " + (-R+16) +
                    "),rotate(" + ( - d.angle) + ")"})
 
     tickMarks.attr("transform",function(d,i,nodes){
@@ -278,22 +291,29 @@ class MultiHandClock60 {
     //           .text(this.mods)
     //           .attr("transform","translate(0 "+ (-R -4) + ")");
 
-    var text =  this.mods.slice(0,2).toString() + ' : ' +
-                this.mods.slice(2,5).toString() + ' : ' +
-                this.mods.slice(5,8).toString();
+    // var text =  this.mods.slice(0,2).toString() + ' : ' +
+    //             this.mods.slice(2,5).toString() + ' : ' +
+    //             this.mods.slice(5,8).toString();
+		var text = "(3,4,5)	- Clock"
     circleText(text, (R+4), -90, clkHeaderText);
 
 // Clock Footer
     var clkFooter = this.svg.append("g").attr("class","clkFooter");
 
     clkFooter.append("rect")
-        .attr("x",-30).attr("width",60).attr("height",10)
+        .attr("x",-52).attr("width",104).attr("height",18)
         .attr("transform","translate(0 "+ (R +4) + ")");
 
+		this.displaybg = clkFooter.append("text")
+							.attr("class","footerLabelsBg")
+							.attr("text-anchor","middle")
+							.attr("transform","translate(0 "+ (R + 18) + ")")
+							.text("8 8 : 8 8 8 : 8 8 8")
+
     this.display = clkFooter.append("text")
-              .attr("class","tickLabels")
+              .attr("class","footerLabels")
               .attr("text-anchor","middle")
-              .attr("transform","translate(0 "+ (R + 11.5) + ")")
+              .attr("transform","translate(0 "+ (R + 18) + ")")
               // .text(this.positions);
 
     this.displayCell = [];
@@ -322,11 +342,6 @@ class MultiHandClock60 {
     //     .attr("x1",0).attr("y1",5)
     //     .attr("x2",0).attr("y2",-(R-20));
 
-    async function loadHandArt(parent,url){
-      const newsvg = await d3.svg(url);
-      var svgNode = newsvg.getElementById("layer1");
-      parent.node().appendChild(svgNode);
-    }
 
     params.hands.forEach((d, i) => {
       if (i==5) {this.handPlate.append("circle").attr("r",4)};
@@ -334,7 +349,7 @@ class MultiHandClock60 {
       var h = this.handPlate.append("g")
                     .attr("id",d.id)
                     .attr("class","hand "+d.type);
-      loadHandArt(h, d.img);
+      loadArt(h, d.img);
     });
     this.handPlate.append("circle").attr("r",2).attr("class","cap")
     // loadHand("./art/hand2.svg");
