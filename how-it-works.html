@@ -35,7 +35,10 @@
   <p> But, what if we had both a 3-hours clock and a 4-hours clock? Could we distinguish the same 12 hours as in the usual 12-hours clock? Yes! That is what our Chinese Remainder Clock uses to indicate the hour: a 3-hours hand (green) and a 4-hours hand (red).
   </p>
 
-  <div id="App1" class="app"> </div>
+  <div class="appFigure">
+  <div id="App1" class="app"></div>
+  <div class="AppCaption"> Drag the hands to set any time. The 12-hours clock and the set of 3-minutes and 4-minutes clocks are synchronised.</div>
+  </div>
 
   <p> Let's take for instance 7pm. In the 3-hours clock, it would mark "1" (because 7 = 3 x 2 + 1), and in the 4-hours clock it would mark "3" (because 7 = 4 x 1 + 3).
   </p>
@@ -54,7 +57,10 @@
   <p> As we did with the hours, we can split the 60-minutes clock. Clearly, only a 3-minutes clock and a 4-minutes clock would not suffice to have all the information, since we have only 12 combinations with these two clocks. Thus, this time we split the 60-minutes clock into a 3-minutes clock, a 4-minutes clock, and a 5-minutes clock.
   </p>
 
-  <div id="App2" class="app"> </div>
+  <div>
+  <div id="App2" class="app"></div>
+  <div class="AppCaption"> Drag the hands to set any time. The 60-minutes clock and the set of 3-minutes, 4-minutes, and 5-minutes clocks are synchronised.</div>
+  </div>
 
   <p>The Chinese Remainder Clock contains a 3-minutes clock, a 4-minutes clock, and a 5-minutes clock. In the analog version, three hands are used to display the minutes; and in the digital version, there are three digits to display the minutes. First digit that can be 0, 1, or 2 for the 3-minutes clock, second digit that can be 0, 1, 2, or 3 for the 4-minutes clock, and the last digit that can be 0, 1, 2, 3, or 4 for the 5-minutes clock.
   </p>

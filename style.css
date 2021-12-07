@@ -3,6 +3,10 @@ body {
   font-family: sans-serif;
 }
 
+h1{
+  text-align: center;
+}
+
 .mainText{
   margin-left: auto;
   margin-right: auto;
@@ -14,13 +18,14 @@ body {
   width: 24%;
 }
 
-
-#Clock1 {
+.AppCaption {
   margin-left: auto;
   margin-right: auto;
-  display: block;
-  max-width: 70vh;
-  text-align: center;
+  width: 70%;
+  font-size: 90%;
+  font-style: italic;
+  color: grey;
+
 }
 
 .app {
@@ -31,6 +36,16 @@ body {
   text-align: center;
 }
 
-h1{
+.appFigure{
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+
+#Clock1 {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 70vh;
   text-align: center;
 }
