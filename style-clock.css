@@ -2,7 +2,7 @@
 
 .backplate {
   stroke: none;
-  fill: rgb(255,239,193);
+  fill: white;
   /* stroke-width: 2px; */
 }
 .border {
@@ -29,7 +29,8 @@
   font-family: DSEG7-Classic;
   font-weight: bold;
   stroke: black;
-  fill: rgb(80,80,80);
+  fill: white;
+  /* fill: rgb(80,80,80); */
   stroke-width: 1px;
 }
 
@@ -39,15 +40,16 @@
   stroke-width: 0.1;
 }
 .footerLabelsBg {
-  fill: rgb(86,86,86);
+  fill: rgb(240,240,240);
   stroke: none;
   font-size: 70%;
   /* stroke-width: 0.1; */
 }
 
 .tickLabelsBigClock {
-  font-size: 80%;
-  font-family: 'Libre Baskerville', serif;
+  font-size: 70%;
+  font-family: 'Josefin Sans', sans-serif;
+  /* font-family: 'Libre Baskerville', serif; */
   /* font-weight: 100; */
   /* stroke: black !important; */
   stroke-width: 0.2 !important;
@@ -66,10 +68,16 @@
   stroke-width: 3px;
 }
 
+.Clock .tick0 {
+  stroke: black;
+  stroke-width: 1.5px;
+}
+
 .tick0 {
-  stroke: hsl(45,93%,60%);;
-  fill: hsl(45,93%,70%);
-  stroke-width: 1px;
+  stroke: url("#rainbowGradient");
+  fill: url("#rainbowGradient");
+  /* stroke: black; */
+  stroke-width: 1.5px;
 }
 .tick3 {
   stroke: rgb(0,200,0);
@@ -106,5 +114,5 @@
 }
 
 .cap {
-  fill: rgb(200,200,200)
+  fill: rgb(100,100,100);
 }

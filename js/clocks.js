@@ -48,16 +48,16 @@ function circleText(text, radius, angle, parent){
 function tickMarksBigClock(){
   var ticks = [];
   var i;
-  ticks.push({ angle: 0 , length: 2, offset: 0, label: undefined, type: "tick3" })
-  ticks.push({ angle: 0 , length: 2, offset: 2, label: undefined, type: "tick4" })
-  ticks.push({ angle: 0 , length: 2, offset: 4, label: undefined, type: "tick5" })
-	ticks.push({ angle: 0 , length: 0, offset: 0, label: 0, type: "tick0" })
+  // ticks.push({ angle: 0 , length: 2, offset: 0, label: undefined, type: "tick3" })
+  // ticks.push({ angle: 0 , length: 2, offset: 2, label: undefined, type: "tick4" })
+  // ticks.push({ angle: 0 , length: 2, offset: 4, label: undefined, type: "tick5" })
+	ticks.push({ angle: 0 , length: 2, offset: 0, label: 0, type: "tick0" })
   for (i=1; i<3; i++)
-    {ticks.push({ angle: i*360/3 , length: 6, offset: 0, label: i, type: "tick3" })}
+    {ticks.push({ angle: i*360/3 , length: 2, offset: 0, label: i, type: "tick3" })}
   for (i=1; i<4; i++)
-    {ticks.push({ angle: i*360/4 , length: 6, offset: 0, label: i, type: "tick4" })}
+    {ticks.push({ angle: i*360/4 , length: 2, offset: 0, label: i, type: "tick4" })}
   for (i=1; i<5; i++)
-    {ticks.push({ angle: i*360/5 , length: 6, offset: 0, label: i, type: "tick5" })}
+    {ticks.push({ angle: i*360/5 , length: 2, offset: 0, label: i, type: "tick5" })}
   return ticks;
 }
 
@@ -81,15 +81,15 @@ function tickMarksN(N){
 }
 
 function handsBigClock(){
-      return [  {N:3, img:"./art/HandHour-shift-1.svg", id: "Hour3", type:"hand3"} ,
-                {N:4, img:"./art/HandHour.svg", id: "Hour4", type:"hand4"} ,
-                {N:3, img:"./art/HandMinute-shift-2.svg", id: "Minute3", type:"hand3"} ,
-                {N:4, img:"./art/HandMinute-shift-1.svg", id: "Minute4", type:"hand4"} ,
-                {N:5, img:"./art/HandMinute.svg", id: "Minute5", type:"hand5"} ,
-                {N:3, img:"./art/HandSecond.svg", id: "Second3", type:"hand3"} ,
-                {N:4, img:"./art/HandSecond.svg", id: "Second4", type:"hand4"} ,
-                {N:5, img:"./art/HandSecond.svg", id: "Second5", type:"hand5"} ,
-              ];
+  return [	{N:3, img:"./art/cigarette/HandHour-L.svg", id: "Hour3", type:"hand3"} ,
+						{N:4, img:"./art/cigarette/HandHour-H.svg", id: "Hour4", type:"hand4"} ,
+            {N:3, img:"./art/cigarette/HandMinute-L.svg", id: "Minute3", type:"hand3"} ,
+            {N:4, img:"./art/cigarette/HandMinute-M.svg", id: "Minute4", type:"hand4"} ,
+            {N:5, img:"./art/cigarette/HandMinute-H.svg", id: "Minute5", type:"hand5"} ,
+						{N:3, img:"./art/cigarette/HandSecond.svg", id: "Second3", type:"hand3"} ,
+            {N:4, img:"./art/cigarette/HandSecond.svg", id: "Second4", type:"hand4"} ,
+            {N:5, img:"./art/cigarette/HandSecond.svg", id: "Second5", type:"hand5"} ,
+          ];
 }
 
 
@@ -105,8 +105,11 @@ class Clock {
     var stepAngle = 360/N;
 
     this.svg = parent.append("svg")
-                  .attr("width","100%")
-                  .attr("viewBox","-55 -65 110 140");
+									.attr("class","Clock")
+                  .attr("height","100%")
+									// .attr("viewBox","-55 -65 110 140");
+									.attr("viewBox",
+									" " + (-R-5) + " " + (-65) + " " + (2*R+10) +" " + (140) + " ");
 
 // Border of the clock
     this.svg.append("circle").attr("class","border")
@@ -147,18 +150,31 @@ class Clock {
               .attr("transform","translate(0 "+ (-R -4) + ")");
 
 // Clock Footer
-    var clkFooter = this.svg.append("g").attr("class","clkFooter");
 
-    clkFooter.append("rect")
-        .attr("x",-15).attr("width",30).attr("height",10)
-        .attr("transform","translate(0 "+ (R +4) + ")");
+var clkFooter = this.svg.append("g").attr("class","clkFooter");
 
-    this.display = clkFooter.append("text")
-              .attr("class","tickLabels")
-              .attr("text-anchor","middle")
-              .attr("transform","translate(0 "+ (R + 12) + ")")
-              .text(this.position);
-;
+var footerCharsLength = String(N).length;
+
+clkFooter.append("rect")
+		.attr("x",-footerCharsLength*6-2)
+		.attr("width",footerCharsLength*12 + 4)
+		.attr("height",18)
+		.attr("transform","translate(0 "+ (R +4) + ")");
+
+this.displaybg = clkFooter.append("text")
+					.attr("class","footerLabelsBg")
+					.attr("text-anchor","middle")
+					.attr("transform","translate(0 "+ (R + 18) + ")")
+					.text("8".repeat(footerCharsLength));
+
+this.display = clkFooter.append("text")
+					.attr("class","footerLabels")
+					.attr("text-anchor","middle")
+					.attr("transform","translate(0 "+ (R + 18) + ")")
+					// .text(this.position);
+
+ this.setDigital();
+
 
 // Hand
     this.handPlate = this.svg.append("g");
@@ -204,7 +220,7 @@ class Clock {
           This.position = new_position;
           This.handPlate.transition().duration(100)
             .attr("transform","rotate("+ (This.position * stepAngle) +')');
-          This.display.text(This.position);
+          This.setDigital();
           callback();
           }
     }
@@ -220,7 +236,13 @@ class Clock {
     this.position = mod(x,this.N)
     this.handPlate.transition().duration(100).
       attr("transform","rotate("+ (this.position * 360/this.N) +')');
-    this.display.text(this.position);
+    // this.display.text(this.position);
+		this.setDigital();
+  }
+
+	setDigital(){
+    var This = this;
+    This.display.text(String(This.position).padStart(String(This.N).length , "!"));
   }
 
 }
@@ -243,11 +265,28 @@ class MultiHandClock60 {
                   // .attr("width","100%")
                   .attr("viewBox","-70 -80 140 170");
 
+//Linear Gradient for "rainbow fill"
+		var gradient = this.svg.append("defs")
+				.append("linearGradient")
+					.attr("id","rainbowGradient")
+					.attr("x1",0).attr("x2",0).attr("y1",0).attr("y2",1);
+
+		gradient.append("stop")
+					.attr("offset",0.3).attr("stop-color","rgb(0,200,0)");
+		gradient.append("stop")
+					.attr("offset",0.31).attr("stop-color","rgb(200,0,0)");
+		gradient.append("stop")
+					.attr("offset",0.6).attr("stop-color","rgb(200,0,0)");
+		gradient.append("stop")
+					.attr("offset",0.61).attr("stop-color","rgb(0,0,200)");
+
+
+
 // Backplate of the clock
-		var bp = this.svg.append("g");
-		loadArt(bp,"./art/backplate.svg")
-    // this.svg.append("circle").attr("class","backplate")
-    //   .attr("r",R);
+		// var bp = this.svg.append("g");
+		// loadArt(bp,"./art/backplate.svg")
+    this.svg.append("circle").attr("class","backplate")
+      .attr("r",R);
 
 // Tick Marks
     var i;
@@ -256,12 +295,12 @@ class MultiHandClock60 {
         .attr("id","tickMarks").attr("class","tickLine")
         .selectAll("g").data(params.ticks).enter().append("g");
 
-    tickMarks.append("line")
-        .attr("class",function(d){return d.type})
-        .attr("x1",0)
-        .attr("y1",function(d){return -(R - d.length - d.offset) })
-        .attr("x2",0)
-        .attr("y2",function(d){return -(R - d.offset) })
+    // tickMarks.append("line")
+    //     .attr("class",function(d){return d.type})
+    //     .attr("x1",0)
+    //     .attr("y1",function(d){return -(R - d.length - d.offset) })
+    //     .attr("x2",0.001) //this is to avoid degenerate bbox for linearGradient.
+    //     .attr("y2",function(d){return -(R - d.offset) })
 
     tickMarks.append("text")
 				.attr("class",function(d){return "tickLabelsBigClock "+ d.type})
@@ -269,7 +308,7 @@ class MultiHandClock60 {
         .attr("text-anchor","middle")
         .attr("alignment-baseline","middle")
         .attr("transform",function(d,i,nodes){
-            return "translate(0 " + (-R+16) +
+            return "translate(0 " + (-R+6.5) +
                    "),rotate(" + ( - d.angle) + ")"})
 
     tickMarks.attr("transform",function(d,i,nodes){
@@ -280,22 +319,22 @@ class MultiHandClock60 {
       .attr("r",R);
 
 // Clock Header
-    var clkHeader = this.svg.append("g").attr("class","clkHeader");
-
-    clkHeader.append("path").attr("d",sectorPath(70,R,R+12)).attr("transform","rotate(-125)");
-
-    var clkHeaderText = clkHeader.append("g").attr("class","tickLabels");
-    // clkHeader.append("text")
-    //           .attr("class","tickLabels")
-    //           .attr("text-anchor","middle")
-    //           .text(this.mods)
-    //           .attr("transform","translate(0 "+ (-R -4) + ")");
-
-    // var text =  this.mods.slice(0,2).toString() + ' : ' +
-    //             this.mods.slice(2,5).toString() + ' : ' +
-    //             this.mods.slice(5,8).toString();
-		var text = "(3,4,5)	- Clock"
-    circleText(text, (R+4), -90, clkHeaderText);
+    // var clkHeader = this.svg.append("g").attr("class","clkHeader");
+		//
+    // clkHeader.append("path").attr("d",sectorPath(70,R,R+12)).attr("transform","rotate(-125)");
+		//
+    // var clkHeaderText = clkHeader.append("g").attr("class","tickLabels");
+    // // clkHeader.append("text")
+    // //           .attr("class","tickLabels")
+    // //           .attr("text-anchor","middle")
+    // //           .text(this.mods)
+    // //           .attr("transform","translate(0 "+ (-R -4) + ")");
+		//
+    // // var text =  this.mods.slice(0,2).toString() + ' : ' +
+    // //             this.mods.slice(2,5).toString() + ' : ' +
+    // //             this.mods.slice(5,8).toString();
+		// var text = "(3,4,5)	- Clock"
+    // circleText(text, (R+4), -90, clkHeaderText);
 
 // Clock Footer
     var clkFooter = this.svg.append("g").attr("class","clkFooter");
@@ -344,7 +383,7 @@ class MultiHandClock60 {
 
 
     params.hands.forEach((d, i) => {
-      if (i==5) {this.handPlate.append("circle").attr("r",4)};
+      // if (i==5) {this.handPlate.append("circle").attr("r",4)};
 
       var h = this.handPlate.append("g")
                     .attr("id",d.id)

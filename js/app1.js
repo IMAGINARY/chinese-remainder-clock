@@ -5,6 +5,7 @@ function App1(parentId){
   var parent = d3.select(parentId);
 
   var container1 = parent.append("span").attr("class","subImage");
+  parent.append("span").style("min-width","3em").style("display","inline-block");
   var container2 = parent.append("span").attr("class","subImage");
   var container3 = parent.append("span").attr("class","subImage");
 
