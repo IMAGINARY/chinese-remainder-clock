@@ -1,12 +1,4 @@
 
-// l = 60;
-// a = 3;
-// b = 4;
-// c = 5;
-
-// [g,m,n,o] = xgcd3(a,b,c);
-// console.log("gcd: ",g);
-
 L = new MultiHandClock60( {N:60,radius:50, ticks: tickMarksBigClock(), hands: handsBigClock() } , "#Clock1", function(){});
 
 
