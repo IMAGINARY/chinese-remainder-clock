@@ -71,6 +71,16 @@ function tickMarks60by5(){
   return ticks;
 }
 
+function tickMarks60in12(){
+  var ticks = [];
+  var i, label;
+  for (i=0; i<60; i++) {
+    label = (mod(i,5)==0) ? i/5 : undefined;
+    ticks.push({ angle: i*360/60 , length: 3, offset: 0, label: label, type: "tickBlack" })
+    }
+  return ticks;
+}
+
 function tickMarksN(N){
   var ticks = [];
   var i;
@@ -89,6 +99,13 @@ function handsBigClock(){
 						{N:3, img:"./art/cigarette/HandSecond.svg", id: "Second3", type:"hand3"} ,
             {N:4, img:"./art/cigarette/HandSecond.svg", id: "Second4", type:"hand4"} ,
             {N:5, img:"./art/cigarette/HandSecond.svg", id: "Second5", type:"hand5"} ,
+          ];
+}
+
+function handsUsualClock(){
+  return [	{N:12, img:"./art/cigarette/HandHour-L.svg", id: "Hour3", type:"hand3"} ,
+            {N:60, img:"./art/cigarette/HandMinute-L.svg", id: "Minute3", type:"hand3"} ,
+						{N:60, img:"./art/cigarette/HandSecond.svg", id: "Second3", type:"hand3"} ,
           ];
 }
 
@@ -153,7 +170,7 @@ class Clock {
 
 var clkFooter = this.svg.append("g").attr("class","clkFooter");
 
-var footerCharsLength = String(N).length;
+var footerCharsLength = String(N-1).length;
 
 clkFooter.append("rect")
 		.attr("x",-footerCharsLength*6-2)
@@ -233,7 +250,8 @@ this.display = clkFooter.append("text")
 
   // Methods
   setPosition(x){
-    this.position = mod(x,this.N)
+    this.position = mod(x,this.N);
+
     this.handPlate.transition().duration(100).
       attr("transform","rotate("+ (this.position * 360/this.N) +')');
     // this.display.text(this.position);
@@ -242,7 +260,7 @@ this.display = clkFooter.append("text")
 
 	setDigital(){
     var This = this;
-    This.display.text(String(This.position).padStart(String(This.N).length , "!"));
+    This.display.text(String(This.position).padStart(String(This.N-1).length , "!"));
   }
 
 }
@@ -250,20 +268,23 @@ this.display = clkFooter.append("text")
 
 
 //params
-// {ticks, Hands =[], }
+// {ticks, hands =[], }
 
 class MultiHandClock60 {
   constructor(params,parentId,callback = function (){} ){
-    this.mods = [3,4,3,4,5,3,4,5]
+		this.mods = [];
+		params.hands.forEach((item, i) => { this.mods[i] = item.N });
+		// [3,4,3,4,5,3,4,5]
+
     this.R = 65;
-    this.positions = [0,0,0,0,0,0,0,0];
+    this.positions = new Array(this.mods.length).fill(0);
 
     var R = this.R;
     var This = this;
 
     this.svg = d3.select(parentId).append("svg")
-                  // .attr("width","100%")
-                  .attr("viewBox","-70 -80 140 170");
+                  .attr("width","100%")
+                  .attr("viewBox","-70 -70 140 160");
 
 //Linear Gradient for "rainbow fill"
 		var gradient = this.svg.append("defs")
@@ -279,7 +300,6 @@ class MultiHandClock60 {
 					.attr("offset",0.6).attr("stop-color","rgb(200,0,0)");
 		gradient.append("stop")
 					.attr("offset",0.61).attr("stop-color","rgb(0,0,200)");
-
 
 
 // Backplate of the clock
@@ -338,15 +358,20 @@ class MultiHandClock60 {
 
 // Clock Footer
     var clkFooter = this.svg.append("g").attr("class","clkFooter");
+		var footerCharsLength = this.mods.reduce((a,b)=> a + String(b-1).length ,0 );
+		// console.log("footerCharsLength",footerCharsLength);
 
-    clkFooter.append("rect")
-        .attr("x",-52).attr("width",104).attr("height",18)
-        .attr("transform","translate(0 "+ (R +4) + ")");
+		clkFooter.append("rect")
+				.attr("x",-footerCharsLength*6-2)
+				.attr("width",footerCharsLength*12 + 4)
+				.attr("height",18)
+				.attr("transform","translate(0 "+ (R +4) + ")");
 
 		this.displaybg = clkFooter.append("text")
 							.attr("class","footerLabelsBg")
 							.attr("text-anchor","middle")
 							.attr("transform","translate(0 "+ (R + 18) + ")")
+							// .text("8".repeat(footerCharsLength));
 							.text("8 8 : 8 8 8 : 8 8 8")
 
     this.display = clkFooter.append("text")

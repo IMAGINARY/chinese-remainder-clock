@@ -73,6 +73,11 @@
   stroke-width: 1.5px;
 }
 
+.tickBlack {
+  stroke: black;
+  stroke-width: 1.5px;
+}
+
 .tick0 {
   stroke: url("#rainbowGradient");
   fill: url("#rainbowGradient");
@@ -96,7 +101,11 @@
 }
 
 
-
+.handBlack {
+  fill: black;
+  stroke: black;
+  stroke-width: 0.1px;
+}
 .hand3 {
   fill: rgb(0,200,0);
   stroke: rgb(0,120,0);

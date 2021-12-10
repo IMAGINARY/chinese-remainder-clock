@@ -7,8 +7,10 @@
 
 <script src="./js/clocks.js"></script>
 <script src="./js/math.js"></script>
-<script src="./js/app1.js"></script>
-<script src="./js/app2.js"></script>
+<script src="./js/app3.js"></script>
+<script src="./js/app4.js"></script>
+
+<link rel="stylesheet" href="./fonts/dseg.css">
 
 
 <link rel="stylesheet" href="./style.css">
@@ -19,7 +21,6 @@
 <body>
 
 <div class="mainText">
-  <h1> The Chinese Remainder Theorem </h1>
   <p> Mathematical explanation
   </p>
 
@@ -30,10 +31,70 @@
     <li> Bézout's identity and Euclid's algorithm (just an idea of what it is).
   </ul>
 
+  <h1> The Chinese Remainder Theorem </h1>
+
+  <p> With clocks, we identify different numbers as if they were the same. For instance, in a 12-hours clock, the 12 is identified with 0, the 13 is identified with 1, and so on. We can also say that 11 is identified with -1. In mathematics, we call this "numbers modulo 12", and we write <i>12=0 mod 12</i> to make it shorter. We can use any base for the modulo, for instance, numbers modulo 2 means that 0=2=-2=4=-4=... mod 2, and 1=-1=3=-3=... mod 2, so all the even numbers are equivalent to 0, and all the odd numbers are equivalent to 1.
+  </p>
+
+  <p>
+  To find what is the equivalent of a number x in modulo m, we divide (integer division, no decimals) x into m and we keep the remainder.
+  The fantastic property is that you can operate numbers modulo m, you can add and substract them, you can multiply them, and in some cases, you can even divide them. When doing those operations, you always stay within your set of m numbers.
+  </p>
+
+  <p>
+  The Chinese Remainder Theorem tells us about numbers read in different moduli. For example, it states that numbers modulo 12 have the same structure as pairs of numbers modulo 3 and modulo 4.
+  </p>
+
+  <div class="appFigure">
+  <div id="App3" class="app"></div>
+  <div class="AppCaption"> Drag the hands to see the correspondences.</div>
+  </div>
+
+  <p>For each number modulo 12, there is only and only one pair modulo 3 and modulo 4. But it is more than a matching of elements: the structure is the same. The next element to 8 mod 12 is 9 mod 12, and the next element to (2 mod 3, 0 mod 4) is (0 mod 3, 1 mod 4), which are the corresponding pairs.
+  </p>
+
+  <p>
+  Similarly,
+  5 x 7 mod 12 = 35 mod 12 = 11 mod 12,
+  and correspondingly,
+  5 x (7 mod 3, 7 mod 4) = 5 x (1 mod 3, 3 mod 4) = (5 mod 3, 15 mod 4) = (2 mod 3, 3 mod 4), which is the pair corresponding to 11 mod 12.
+  </p>
+
+  <p> When does that "decomposition" hold? Clearly, if we want numbers modulo m to be splitted into pairs of numbers modulo a and modulo b, we need that m = a x b, otherwise the two sets have a different number of elements. But is that enough? Let's see the next example.
+  </p>
+
+  <div class="appFigure">
+  <div id="App4" class="app"></div>
+  <div class="AppCaption"> Drag the hands to see the correspondences.</div>
+  </div>
+
+  <p> If we try to split numbers modulo 12 into numbers modulo 2 and modulo 6, we find a problem. The number 0 mod 12 and the number 6 mod 12 both should correspond to (0 mod 2 , 0 mod 6). At the same time, no number in modulo 12 corresponds to (1 mod 2, 0 mod 6), because all numbers equivalent to 0 mod 6 are multiples of 6, and therefore they are even numbers. But all even numbers are equivalent to 0 mod 2, not 1. This means that the two sets have different structure, there is no one-to-one correspondence.
+  </p>
+
+  <p> This happened because multiples of 6 are also multiples of 2, and this happened because 2 is a prime factor of the two moduli on which we want to split, the 2 and 6.The Chinese Remainder Theorem says the following:</p>
+
+  <div class="theorem" style="font-style:italic;">
+  <p> <b>Theorem.</b> Let m, a, b be three natural numbers such that m = a x b. Assume that a,b have no common prime factors. Then, the numbers modulo m are in correspondence with the pairs of numbers modulo a, and modulo b.
+  </p>
+  </div>
+
+
+
+
+
+
+
+
+
   <a href="index.html"> Back to main page. </a>
 </div>
 
 
+
+<script>
+App3("#App3");
+App4("#App4");
+</script>
 
 </body>
 
