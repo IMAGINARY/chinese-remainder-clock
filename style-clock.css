@@ -103,21 +103,25 @@
 
 .handBlack {
   fill: black;
+  color: black;
   stroke: black;
   stroke-width: 0.1px;
 }
 .hand3 {
   fill: rgb(0,200,0);
+  color: rgb(0,200,0);
   stroke: rgb(0,120,0);
   stroke-width: 0.1px;
 }
 .hand4 {
   fill: rgb(200,0,0);
+  color: rgb(200,0,0);
   stroke: rgb(120,0,0);
   stroke-width: 0.1px;
 }
 .hand5 {
   fill: rgb(0,0,200);
+  color: rgb(0,0,200);
   stroke: rgb(0,0,120);
   stroke-width: 0.1px;
 }

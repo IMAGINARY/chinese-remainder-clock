@@ -7,12 +7,16 @@
 
 <script src="./js/clocks.js"></script>
 <script src="./js/math.js"></script>
-<script src="./js/app1.js"></script>
-<script src="./js/app2.js"></script>
+<script src="./js/appQuiz1.js"></script>
+<script src="./js/appQuiz2.js"></script>
+<!-- <script src="./js/app2.js"></script> -->
 
+<link rel="stylesheet" href="./fonts/dseg.css">
 
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./style-clock.css">
+<link rel="stylesheet" href="./style-digital-clock.css">
+<link rel="stylesheet" href="./style-input.css">
 
 </head>
 
@@ -20,14 +24,27 @@
 
 <div class="mainText">
   <h1> Quiz </h1>
-  <p> Show some Chinese clocks and the user must find the usual (hour : minute).
-  </p>
+  <!-- <p> Show some Chinese clocks and the user must find the usual (hour : minute).
+  </p> -->
+  <p>What time is it in the Chinese Remainder Clock? </p>
+  <p>NOTE: TO CHEAT, SEE THE CONSOLE </p>
+
+  <h2>Hours Quiz </h2>
+  <div id="AppQ1"></div>
+
+  <h2>Hours and minutes Quiz </h2>
+  <div id="AppQ2"></div>
 
 
+<br><br><br><br>
   <a href="index.html"> Back to main page. </a>
 </div>
 
 
+<script>
+AppQ1("#AppQ1");
+AppQ2("#AppQ2");
+</script>
 
 </body>
 

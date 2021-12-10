@@ -61,6 +61,17 @@ function tickMarksBigClock(){
   return ticks;
 }
 
+function tickMarksBigClock_H(){
+  var ticks = [];
+  var i;
+	ticks.push({ angle: 0 , length: 2, offset: 0, label: 0, type: "tick0" })
+  for (i=1; i<3; i++)
+    {ticks.push({ angle: i*360/3 , length: 2, offset: 0, label: i, type: "tick3" })}
+  for (i=1; i<4; i++)
+    {ticks.push({ angle: i*360/4 , length: 2, offset: 0, label: i, type: "tick4" })}
+  return ticks;
+}
+
 function tickMarks60by5(){
   var ticks = [];
   var i, label;
@@ -284,7 +295,7 @@ class MultiHandClock60 {
 
     this.svg = d3.select(parentId).append("svg")
                   .attr("width","100%")
-                  .attr("viewBox","-70 -70 140 160");
+                  .attr("viewBox","-70 -70 140 140");
 
 //Linear Gradient for "rainbow fill"
 		var gradient = this.svg.append("defs")
@@ -357,42 +368,42 @@ class MultiHandClock60 {
     // circleText(text, (R+4), -90, clkHeaderText);
 
 // Clock Footer
-    var clkFooter = this.svg.append("g").attr("class","clkFooter");
-		var footerCharsLength = this.mods.reduce((a,b)=> a + String(b-1).length ,0 );
-		// console.log("footerCharsLength",footerCharsLength);
-
-		clkFooter.append("rect")
-				.attr("x",-footerCharsLength*6-2)
-				.attr("width",footerCharsLength*12 + 4)
-				.attr("height",18)
-				.attr("transform","translate(0 "+ (R +4) + ")");
-
-		this.displaybg = clkFooter.append("text")
-							.attr("class","footerLabelsBg")
-							.attr("text-anchor","middle")
-							.attr("transform","translate(0 "+ (R + 18) + ")")
-							// .text("8".repeat(footerCharsLength));
-							.text("8 8 : 8 8 8 : 8 8 8")
-
-    this.display = clkFooter.append("text")
-              .attr("class","footerLabels")
-              .attr("text-anchor","middle")
-              .attr("transform","translate(0 "+ (R + 18) + ")")
-              // .text(this.positions);
-
-    this.displayCell = [];
-    this.displayCell[0] = this.display.append("tspan").attr("class","hand3");
-    this.displayCell[1] = this.display.append("tspan").attr("class","hand4");
-    this.display.append("tspan").text(": ");
-    this.displayCell[2] = this.display.append("tspan").attr("class","hand3");
-    this.displayCell[3] = this.display.append("tspan").attr("class","hand4");
-    this.displayCell[4] = this.display.append("tspan").attr("class","hand5");
-    this.display.append("tspan").text(": ");
-    this.displayCell[5] = this.display.append("tspan").attr("class","hand3");
-    this.displayCell[6] = this.display.append("tspan").attr("class","hand4");
-    this.displayCell[7] = this.display.append("tspan").attr("class","hand5");
-
-    this.setDigital();
+    // var clkFooter = this.svg.append("g").attr("class","clkFooter");
+		// var footerCharsLength = this.mods.reduce((a,b)=> a + String(b-1).length ,0 );
+		// // console.log("footerCharsLength",footerCharsLength);
+		//
+		// clkFooter.append("rect")
+		// 		.attr("x",-footerCharsLength*6-2)
+		// 		.attr("width",footerCharsLength*12 + 4)
+		// 		.attr("height",18)
+		// 		.attr("transform","translate(0 "+ (R +4) + ")");
+		//
+		// this.displaybg = clkFooter.append("text")
+		// 					.attr("class","footerLabelsBg")
+		// 					.attr("text-anchor","middle")
+		// 					.attr("transform","translate(0 "+ (R + 18) + ")")
+		// 					// .text("8".repeat(footerCharsLength));
+		// 					.text("8 8 : 8 8 8 : 8 8 8")
+		//
+    // this.display = clkFooter.append("text")
+    //           .attr("class","footerLabels")
+    //           .attr("text-anchor","middle")
+    //           .attr("transform","translate(0 "+ (R + 18) + ")")
+    //           // .text(this.positions);
+		//
+    // this.displayCell = [];
+    // this.displayCell[0] = this.display.append("tspan").attr("class","hand3");
+    // this.displayCell[1] = this.display.append("tspan").attr("class","hand4");
+    // this.display.append("tspan").text(": ");
+    // this.displayCell[2] = this.display.append("tspan").attr("class","hand3");
+    // this.displayCell[3] = this.display.append("tspan").attr("class","hand4");
+    // this.displayCell[4] = this.display.append("tspan").attr("class","hand5");
+    // this.display.append("tspan").text(": ");
+    // this.displayCell[5] = this.display.append("tspan").attr("class","hand3");
+    // this.displayCell[6] = this.display.append("tspan").attr("class","hand4");
+    // this.displayCell[7] = this.display.append("tspan").attr("class","hand5");
+		//
+    // this.setDigital();
 
 // Hands
 
@@ -464,7 +475,7 @@ class MultiHandClock60 {
           .attr("transform", function(d,i){
             return "rotate("+ (This.positions[i] * 360/This.mods[i]) +')'
           });
-    this.setDigital();
+    // this.setDigital();
   }
 
   setDigital(){
@@ -472,4 +483,79 @@ class MultiHandClock60 {
     this.positions.forEach(function(item, i) {This.displayCell[i].text(item + ' ')});
   }
 
+}
+
+
+class DigitalClockMulti {
+  constructor(template,analogVer,parentId){
+    var parent = d3.select(parentId);
+
+    var digiClock = parent.append("div").attr("class","digiClock");
+
+    this.template = template;
+    this.valProps =[];
+    this.displayCell = [];
+
+    var j=0;
+    this.template.forEach((item, i) => {
+      if (item == ":") {
+        digiClock.append("span").text(":");
+      } else if (item == " ") {
+        digiClock.append("span").text(" ");
+      } else {
+        var cell = digiClock.append("span").attr("class","digiCell");
+        var wid = String(item.N - 1).length;
+
+        this.valProps.push({N: item.N, width: wid, padSymbol: item.padSymbol});
+        var bgString = ("8".repeat(wid));
+        // this.digiClockCell[j] = this.fg.append("input").attr("type","number").attr("class",item.type);
+        cell.append("span").attr("class","digiCellBg").text(bgString);
+        this.displayCell[j] =
+        cell.append("span").attr("class","digiCellFg "+ item.type);
+        j++;
+      }
+    });
+  }
+
+  // Methods
+  setValues(v){
+    var This = this;
+
+    v.forEach((item, i) => {
+        var vtxt = String( mod(item,this.valProps[i].N) )
+          .padStart(This.valProps[i].width, This.valProps[i].padSymbol);
+        This.displayCell[i].text(vtxt);
+      });
+  }
+
+}
+
+
+class DigitalClockInputs {
+  constructor(template,analogVer,parentId){
+    var parent = d3.select(parentId);
+
+    var digiClock = parent.append("div").attr("class","digiClock");
+
+    this.inputs = [];
+    this.values = [];
+
+    template.forEach((item, i) => {
+      if (item == ":") {
+        digiClock.append("span").text(":");
+      } else {
+				this.values.push(0);
+        this.inputs.push(digiClock.append("input").attr("type","number")
+                  .attr("min","0").attr("max",item-1).attr("step","1").attr("value","0") );
+      }
+    });
+
+    this.inputs.forEach((item, i) => {
+      item.on("change",()=>{
+          this.values[i]=parseInt(item.node().value);
+          analogVer.setPositions(this.values)
+          // console.log(this.values);
+        });
+    });
+  }
 }
