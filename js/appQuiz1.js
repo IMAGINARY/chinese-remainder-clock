@@ -25,7 +25,7 @@ function AppQ1(parentId){
           ];
 
   var handsUsual =
-          [	{N:12, img:"./art/cigarette/HandHour-L.svg", id: "Hour3", type:"handBlack"} ,
+          [	{N:12, img:"./art/cigarette/HandHour-H.svg", id: "Hour3", type:"handBlack"} ,
           ];
 
   var templateCRC = [   {N:3, type: "hand3", padSymbol: '!'}, ' ',
@@ -42,7 +42,7 @@ function AppQ1(parentId){
   var checkButton = parent.append("button").text("Check");
   checkButton.on("click",checkAnswer);
 
-  var result = parent.append("span").attr("class","testResult");
+  var result = parent.append("div").attr("class","testResult");
 
 
   var CRC = new MultiHandClock60( {radius:50, ticks: tickMarksBigClock_H(), hands: handsCRC } , "#CRC", function(){});

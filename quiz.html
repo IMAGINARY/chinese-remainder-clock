@@ -22,24 +22,45 @@
 
 <body>
 
+<div class="header">
+  <div class="mainTitle"> The Chinese Remainder Clock </div>
+
+  <nav>
+  <a href="index.html"> Home </a>
+  <a href="how-it-works.html"> How does it work? </a>
+  <a href="theorem.html"> The Chinese Remainder Theorem </a>
+  <span class="current"> Quiz </span>
+  <!-- <a href="quiz.html"> Quiz </a> -->
+  </nav>
+</div>
+
 <div class="mainText">
   <h1> Quiz </h1>
   <!-- <p> Show some Chinese clocks and the user must find the usual (hour : minute).
   </p> -->
   <p>What time is it in the Chinese Remainder Clock? </p>
-  <p>NOTE: TO CHEAT, SEE THE CONSOLE </p>
+  <p class="devWarning">NOTE: TO CHEAT, SEE THE CONSOLE </p>
 
   <h2>Hours Quiz </h2>
-  <div id="AppQ1"></div>
+
+
+  <div class="appFigure">
+  <div id="AppQ1" class="app"></div>
+  </div>
+
 
   <h2>Hours and minutes Quiz </h2>
-  <div id="AppQ2"></div>
+  <div class="appFigure">
+  <div id="AppQ2" class="app"></div>
+  </div>
 
 
-<br><br><br><br>
-  <a href="index.html"> Back to main page. </a>
 </div>
 
+<div class="footer">
+  <a href="https://github.com/IMAGINARY/chinese-remainder-clock">GitHub</a> |
+  <a href="about.html">About</a>
+</div>
 
 <script>
 AppQ1("#AppQ1");
