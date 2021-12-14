@@ -117,11 +117,10 @@ nav .current {
   margin-bottom: 1em;
   padding: 0.5em;
   overflow: hidden;
-  height: 9em;
-  min-width: 50%;
+  height: 10em;
   border-style: solid;
   border-width: thin;
-  width: 24%;
+  width: 50%;
   column-count: 2;
   column-fill: auto;
 }

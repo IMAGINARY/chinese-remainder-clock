@@ -9,7 +9,7 @@ function App4(parentId){
   var container2 = parent.append("span").attr("class","subImage");
   var container3 = parent.append("span").attr("class","subImage");
 
-  var containerCorresp = parent.append("div").attr("class","correspondence");
+  var containerCorresp = parent.append("div").attr("class","correspondence").style("width","75%").style("column-count", "4");
 
   var resetButton = parent.append("button").text("↻")
       .on("click",()=>{corresps.clear(); containerCorresp.node().innerHTML = "";});
