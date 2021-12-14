@@ -74,11 +74,10 @@
 
   <p> When does that "decomposition" hold? Clearly, if we want numbers modulo m to be splitted into pairs of numbers modulo a and modulo b, we need that m = a x b, otherwise the two sets have a different number of elements. But is that enough? Let's see the next example.
   </p>
-  <p class="devWarning">BROKEN APP </p>
 
   <div class="appFigure">
   <div id="App4" class="app"></div>
-  <div class="AppCaption"> Drag the hands to see the correspondences.</div>
+  <div class="AppCaption"> Drag the hands to see the correspondences. Try first using as input the 12-hours clock, and then reset and use as input the 2-hours and 6-hours clocks.</div>
   </div>
 
   <p> If we try to split numbers modulo 12 into numbers modulo 2 and modulo 6, we find a problem. The number 0 mod 12 and the number 6 mod 12 both should correspond to (0 mod 2 , 0 mod 6). At the same time, no number in modulo 12 corresponds to (1 mod 2, 0 mod 6), because all numbers equivalent to 0 mod 6 are multiples of 6, and therefore they are even numbers. But all even numbers are equivalent to 0 mod 2, not 1. This means that the two sets have different structure, there is no one-to-one correspondence.

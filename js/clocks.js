@@ -187,6 +187,7 @@ clkFooter.append("rect")
 		.attr("x",-footerCharsLength*6-2)
 		.attr("width",footerCharsLength*12 + 4)
 		.attr("height",18)
+		.style("rx","6px")
 		.attr("transform","translate(0 "+ (R +4) + ")");
 
 this.displaybg = clkFooter.append("text")
@@ -233,6 +234,8 @@ this.display = clkFooter.append("text")
     function dragstarted(event){
     		init_position = This.position;
     		init_pointer_angle = Math.atan2(event.y, event.x)* 180/Math.PI;
+				This.handPlate.style("opacity","1");
+
     }
 
     function dragged(event){
@@ -263,10 +266,16 @@ this.display = clkFooter.append("text")
   setPosition(x){
     this.position = mod(x,this.N);
 
-    this.handPlate.transition().duration(100).
+		if (x==null)
+		{
+			this.handPlate.transition().duration(200).style("opacity","0");
+		} else {
+			this.handPlate.style("opacity","1");
+    	this.handPlate.transition().duration(100).
       attr("transform","rotate("+ (this.position * 360/this.N) +')');
     // this.display.text(this.position);
 		this.setDigital();
+		}
   }
 
 	setDigital(){
