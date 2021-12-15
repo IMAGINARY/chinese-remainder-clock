@@ -37,22 +37,20 @@
 
 <div class="mainText">
   <h1> Quiz </h1>
-  <!-- <p> Show some Chinese clocks and the user must find the usual (hour : minute).
-  </p> -->
+
   <p>What time is it in the Chinese Remainder Clock? </p>
-  <p>Use the Usual digital clock as an input on the right, to show the same time as the Chinese Remainder Clock on the left. You have 3 tries per challenge.</p>
+  <p>Use the Usual digital clock on the right as an input, to show the same time as the Chinese Remainder Clock on the left. You have 3 tries per challenge.</p>
 
-  <h2>Hours Quiz </h2>
-  <div class="appFigure">
-  <div id="AppQ1" class="app"></div>
+  <div class="selectQuiz">
+  <input type="radio" id="hours" name="quizType" value="hours" checked>
+  <label for="hours">Hours Quiz</label>
+  <input type="radio" id="hours-minutes" name="quizType" value="hours-minutes">
+  <label for="hours-minutes">Hours and minutes Quiz</label>
   </div>
 
-
-  <h2>Hours and minutes Quiz </h2>
   <div class="appFigure">
-  <div id="AppQ2" class="app"></div>
+  <div id="Quiz" class="app"></div>
   </div>
-
 
 </div>
 
@@ -62,8 +60,16 @@
 </div>
 
 <script>
-AppQ1("#AppQ1");
-AppQ2("#AppQ2");
+AppQ1("#Quiz");
+d3.select("#hours").on("click",()=>{setQuiz("appQ1")});
+d3.select("#hours-minutes").on("click",()=>{setQuiz("appQ2")});
+
+function setQuiz(quiz){
+  d3.select("#Quiz").selectAll("*").remove();
+  if (quiz == "appQ1") {AppQ1("#Quiz")}
+  if (quiz == "appQ2") {AppQ2("#Quiz")}
+}
+
 </script>
 
 </body>

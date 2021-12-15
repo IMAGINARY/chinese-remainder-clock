@@ -39,6 +39,8 @@ function AppQ1(parentId){
   var container2 = parent.append("span").attr("class","subImageQuiz").attr("id","Usual");
   parent.append("br");
 
+  var result = parent.append("div").attr("class","testResult");
+
   var quizPanel = parent.append("div").attr("class","quizPanel");
 
   var livesPanel = quizPanel.append("span").attr("class","livesPanel");
@@ -52,7 +54,6 @@ function AppQ1(parentId){
 
   checkButton.on("click",checkAnswer);
 
-  var result = parent.append("div").attr("class","testResult");
 
   // Clocks setup
   var analogCRC = new MultiHandClock60( {radius:50, ticks: tickMarksBigClock_H(), hands: handsCRC } , "#CRC", function(){});
