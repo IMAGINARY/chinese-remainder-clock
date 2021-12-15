@@ -567,4 +567,12 @@ class DigitalClockInputs {
         });
     });
   }
+	//methods
+	setValues(v){
+		v.forEach((item, i) => {
+			this.values[i] = item;
+			this.inputs[i].node().value = item;
+		});
+
+	}
 }
