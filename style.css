@@ -5,7 +5,10 @@
 body {
   font-family: sans-serif;
   /* font-size: 14pt; */
+  margin: 0;
+  padding: 0;
 }
+
 
 .header {
   position: sticky;
@@ -16,25 +19,26 @@ body {
 .footer {
   position:fixed;
   width: 100%;
-  background-color: rgb(179, 0, 0);
-  color: gold;
+  background-color: rgb(255, 255, 255);
+  color: black;
   text-align: center;
   padding:0.2em;
   bottom: 0;
 }
 .footer a{
-  color: hsl(48, 100%, 50%);
+  color: black;
   margin-left: 1em;
   margin-right: 1em;
 }
 
 .mainTitle{
-  background-color: rgb(179, 0, 0);
-  color: gold;
+  background-color: rgb(255, 255, 255);
+  color: black;
   text-align: center;
   padding: 0.5em;
   font-size: 250%;
   font-weight: bold;
+  top:0;
 }
 
 .mainTitleBg{
@@ -52,7 +56,7 @@ nav {
 position: sticky;
 display: flex;
 padding:5px;
-background-color: rgb(179, 0, 0);
+background-color: rgb(255, 255, 255);
 justify-content: space-around;
 /* font-weight: bold; */
 font-size: 110%;
@@ -64,7 +68,7 @@ max-width: 1000px; */
 nav a, nav .current {
   display: flex;
   text-decoration: none;
-  background-color: hsl(48, 100%, 50%);
+  background-color: rgb(200,200,200);
   color: black;
   width: 24%;
   padding:10px;
@@ -75,7 +79,7 @@ nav a, nav .current {
   text-align: center;
 }
 nav .current {
-  background-color: hsl(48, 100%, 40%);;
+  background-color: rgb(160,160,160);
 }
 
 .introText{
@@ -88,7 +92,7 @@ nav .current {
   margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 8em;
+  margin-bottom: 6em;
   max-width: 1000px;
 }
 
@@ -100,14 +104,6 @@ nav .current {
   /* font-size: 20px; */
 }
 
-.subImageQuiz {
-  display: inline-block;
-  text-align: center;
-  max-width: 25%;
-}
-.subImageQuiz .digiClock{
-  font-size: 20px;
-}
 
 .correspondence {
   display: block;
@@ -159,9 +155,4 @@ nav .current {
 
 #Clock1 .digiClock {
   font-size: 40pt;
-}
-
-.testResult{
-  height: 1.5em;
-  padding:0.25em;
 }
