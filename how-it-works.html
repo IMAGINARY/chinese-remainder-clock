@@ -46,15 +46,15 @@
   <p> What if we had a clock with only 3 hour marks? It would make a complete turn every 3 hours. If we compare our 3-hours clock with the usual 12-hours clock, at noon both would point to the "0" position, at 1pm both would point to the "1" position, and at 3pm the usual clock would point to "3", but the 3-hours clock would point to "0" again. At 4pm, the usual clock points to "4", and the 3-hours clock points to "1", and so on. At 8pm, the usual clock points to "8", and the 3-hours clock points to "2", because it has made two complete turns plus one position (8 = 3 x 2 + 1). On this 3-hours clock we can't distinguish between 2pm, 5pm, 8pm and 11pm.
   </p>
 
-  <p> What if we had a 4-hours clock? The situation would be similar, we would not be able to distinguish between 3pm, 7pm and 11pm because in all those cases the clock would mark "3".
+  <p> What if we had a 4-hours clock? The situation would be similar, we would for example not be able to distinguish between 3pm, 7pm and 11pm because in all those cases the clock would mark "3".
   </p>
 
-  <p> But, what if we had both a 3-hours clock and a 4-hours clock? Could we distinguish the same 12 hours as in the usual 12-hours clock? Yes! That is what our Chinese Remainder Clock uses to indicate the hour: a 3-hours hand (green) and a 4-hours hand (red).
+  <p> But, what if we had both a 3-hours clock and a 4-hours clock? Could we distinguish the same 12 hours as in the usual 12-hours clock? Yes! That is what our Chinese Remainder Clock uses to indicate the hour: a 3-hours hand and a 4-hours hand.
   </p>
 
   <div class="appFigure">
   <div id="App1" class="app"></div>
-  <div class="AppCaption"> Drag the hands to set any time. The 12-hours clock and the set of 3-minutes and 4-minutes clocks are synchronised.</div>
+  <div class="AppCaption"> Drag the hands to set any time. The 12-hours clock and the set of 3-hours and 4-hours clocks are synchronised.</div>
   </div>
 
   <p> Let's take for instance 7pm. In the 3-hours clock, it would mark "1" (because 7 = 3 x 2 + 1), and in the 4-hours clock it would mark "3" (because 7 = 4 x 1 + 3).
@@ -63,7 +63,7 @@
   <p> But crucially, it also works the other way around: If the 3-hours clock marks "1", the only possibilities are 1, 4, 7, and 10. If the 4-hours clock marks "3", the only possibilities are 3, 7, and 11. Thus, the only hour that matches both clocks is 7. You can check that the same works for all the hours.
   </p>
 
-  <p>The Chinese Remainder Clock contains a 3-hours clock and a 4-hours clock. In the analogue version, two hands are used to display the hours; and in the digital version, there are two digits to display the hours. The first digit that can be 0,1, or 2 for the 3-hours clock, and the second digit that can be 0, 1, 2, or 3 for the 4-hours clock.
+  <p>The Chinese Remainder Clock contains a 3-hours clock and a 4-hours clock. In the analog version, two hands are used to display the hours; and in the digital version, two digits to display the hours. The first digit can be 0,1, or 2 for the 3-hours clock, and the second digit can be 0, 1, 2, or 3 for the 4-hours clock.
   </p>
 
   <h2>Reading minutes and seconds</h2>
@@ -79,10 +79,10 @@
   <div class="AppCaption"> Drag the hands to set any time. The 60-minutes clock and the set of 3-minutes, 4-minutes, and 5-minutes clocks are synchronised.</div>
   </div>
 
-  <p>The Chinese Remainder Clock contains a 3-minutes clock, a 4-minutes clock, and a 5-minutes clock. In the analog version, three hands are used to display the minutes; and in the digital version, there are three digits to display the minutes. First digit that can be 0, 1, or 2 for the 3-minutes clock, second digit that can be 0, 1, 2, or 3 for the 4-minutes clock, and the last digit that can be 0, 1, 2, 3, or 4 for the 5-minutes clock.
+  <p>The Chinese Remainder Clock contains a 3-minutes clock, a 4-minutes clock, and a 5-minutes clock. In the analog version, three hands are used to display the minutes; and in the digital version, three digits to display the minutes. The first digit can be 0, 1, or 2 for the 3-minutes clock, the second digit can be 0, 1, 2, or 3 for the 4-minutes clock, and the last digit can be 0, 1, 2, 3, or 4 for the 5-minutes clock.
   </p>
 
-  <p> The seconds are dealt with exactly in the same way as minutes, as it is done in usual clocks. Usual 60-seconds clocks are split into a 3-seconds clock, a 4-seconds clock, and a 5-seconds clock, combined all together in the Chinese Remainder Clock.
+  <p> The seconds are dealt with exactly in the same way as minutes, as it is done in usual clocks. Usual 60-seconds clocks are now split into a 3-seconds clock, a 4-seconds clock, and a 5-seconds clock, combined all together in the Chinese Remainder Clock.
   </p>
 
 </div>
