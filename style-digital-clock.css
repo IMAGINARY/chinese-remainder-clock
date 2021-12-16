@@ -11,8 +11,9 @@
   font-weight: bold;
   stroke: black;
   fill: white;
-  /* font-size: 120%; */
+  font-size: min(40px,5vw);
   margin: 10px;
+  white-space: nowrap;
 }
 
 .digiCell {
