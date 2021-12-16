@@ -49,7 +49,7 @@
 
   <h1> The Chinese Remainder Theorem </h1>
 
-  <p> With clocks, we consider different numbers as if they were the same. For instance, in a 12-hours clock, the 12 is identified with 0, the 13 is identified with 1, and so on. We can also say that 11 is identified with -1. In mathematics, we call this identification "numbers modulo 12", and we write <i>12=0 mod 12</i> to make it shorter. We can consider numbers modulo m for any natural number m (at least 2), for instance, numbers modulo 2 means that 0=2=-2=4=-4=... mod 2, and 1=-1=3=-3=... mod 2, so all the even numbers are equivalent to 0, and all the odd numbers are equivalent to 1. All numbers modulo m are equivalent to some number from 0 to m-1.
+  <p> With clocks, we consider different numbers as if they were the same. For instance, in a 12-hours clock, the 12 is identified with 0, the 13 is identified with 1, and so on. We can also say that 11 is identified with -1. In mathematics, we call this identification "numbers modulo 12", and we write 12=0 mod 12 to make it shorter. We can consider numbers modulo m for any natural number m (at least 2), for instance, numbers modulo 2 means that 0=2=-2=4=-4=... mod 2, and 1=-1=3=-3=... mod 2, so all the even numbers are equivalent to 0, and all the odd numbers are equivalent to 1. All numbers modulo m are equivalent to some number from 0 to m-1.
 
   To find what is the equivalent of a number modulo m, we divide it (integer division, no decimals) by m and we keep the remainder.
   <!-- The fantastic property is that you can operate numbers modulo m, you can add and substract them, you can multiply them, and in some cases, you can even divide them. When doing those operations, you always stay within your set of m numbers. -->
@@ -98,15 +98,15 @@
   </p>
   </div>
 
-  <p> In other words, provided that a and b have no common factors, for any gIven values x and y, the system of equations:
+  <!-- <p> In other words, provided that a and b have no common factors, for any given values x and y, the system of equations:
   <div style="text-align: center;">
     <div>w = x mod a </div>
     <div>w = y mod b </div>
   </div>
   has always a unique solution w modulo m = a x b.
-  </p>
+  </p> -->
 
-  <p>This is the theorem that the Chinese Remainder Clock uses to display hours (hours in moduli 3 and 4 replace the usual hours modulo 12). Similarly, we can generalize to more than two moduli.</p>
+  <p>This is the theorem that the Chinese Remainder Clock uses to display hours (hours in modulo 3 and modulo 4 replace the usual hours modulo 12). Similarly, we can generalize to more than two moduli.</p>
 
 
   <div class="theorem" style="font-style:italic;">
