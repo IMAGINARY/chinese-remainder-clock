@@ -158,7 +158,7 @@ class Clock {
     tickMarks.append("text").attr("class","tickLabels")
         .text(function(d){return d.label})
         .attr("text-anchor","middle")
-				.attr("baseline-shift","-33%")
+				.attr("dominant-baseline","central")
         .attr("transform",function(d,i,nodes){
             return "translate(0 " + (-R+7) +
                    "),rotate(" + ( - d.angle) + ")"})
@@ -346,7 +346,7 @@ class MultiHandClock60 {
 				.attr("class",function(d){return "tickLabelsBigClock "+ d.type})
         .text(function(d){return d.label})
         .attr("text-anchor","middle")
-        .attr("baseline-shift","-33%")
+        .attr("dominant-baseline","central")
         .attr("transform",function(d,i,nodes){
             return "translate(0 " + (-R+6.5) +
                    "),rotate(" + ( - d.angle) + ")"})
