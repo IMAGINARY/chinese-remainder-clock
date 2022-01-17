@@ -555,12 +555,16 @@ class DigitalClockInputs {
       } else {
 				this.values.push(0);
         this.inputs.push(digiClock.append("input").attr("type","number")
-                  .attr("min","0").attr("max",item-1).attr("step","1").attr("value","0") );
+                  .attr("min","-1").attr("max",item).attr("step","1").attr("value","0") );
       }
     });
 
     this.inputs.forEach((item, i) => {
-      item.on("change",()=>{
+			item.on("input",()=>{
+					item.node().value = mod(parseInt(item.node().value) , parseInt(item.node().max) );
+				});
+
+			item.on("change",()=>{
           this.values[i]=parseInt(item.node().value);
           analogVer.setPositions(this.values)
           // console.log(this.values);
